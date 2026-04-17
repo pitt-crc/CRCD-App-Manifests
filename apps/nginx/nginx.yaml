@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: admin-nginx
+  name: nginx
   labels:
     kubernetes.io/metadata.name: nginx
     pod-security.kubernetes.io/enforce: privileged
@@ -11,7 +11,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx
-  namespace: admin-nginx
+  namespace: nginx
   labels:
     app: nginx
 spec:
@@ -93,33 +93,3 @@ spec:
         - name: nginx-tls
           secret:
             secretName: nginx-tls
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: nginx
-  namespace: admin-nginx
-  labels:
-    app: nginx
-spec:
-  type: LoadBalancer
-  loadBalancerIP: 10.7.84.15
-  selector:
-    app: nginx
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 80
----
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: nginx-tls
-  namespace: admin-nginx
-spec:
-  secretName: nginx-tls
-  issuerRef:
-    name: sectigo-issuer
-    kind: ClusterIssuer
-  dnsNames:
-    - "foo.crc.pitt.edu"
