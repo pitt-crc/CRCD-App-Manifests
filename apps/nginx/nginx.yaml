@@ -84,12 +84,6 @@ spec:
             - name: content
               mountPath: /usr/share/nginx/html
               readOnly: true
-            - name: nginx-tls
-              mountPath: /tmp/foo
-              readOnly: true
       volumes:
         - name: content
           emptyDir: {}
-        - name: nginx-tls
-          secret:
-            secretName: nginx-tls
