@@ -7,4 +7,6 @@ helmCharts:
   - name: grafana
     repo: https://grafana.github.io/helm-charts
     version: 8.11.4
-    releaseName: grafana
+  - name: loki
+    repo: https://grafana-community.github.io/helm-charts
+    version: 13.1.3
