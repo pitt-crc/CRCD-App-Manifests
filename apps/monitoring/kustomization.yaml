@@ -30,9 +30,17 @@ helmCharts:
           volume_enabled: true
         ruler:
           enable_api: true
+        persistence:
+          enabled: true
+          storageClass: pitt-vcf-vks-storage-policy-latebinding
+          size: 10Gi
 
       minio:
         enabled: true
+        persistence:
+          enabled: true
+          storageClass: pitt-vcf-vks-storage-policy-latebinding
+          size: 10Gi
 
       deploymentMode: SingleBinary
 
